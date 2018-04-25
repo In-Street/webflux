@@ -1,0 +1,82 @@
+
+buildscript {
+    ext {
+        lombok="1.16.12"
+        springBootVersion = '2.0.0.RELEASE'
+
+    }
+    repositories {
+        mavenLocal()
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven { url 'http://repo.spring.io/snapshot' }
+        maven { url 'http://repo.spring.io/milestone' }
+    }
+    dependencies {
+
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RELEASE'
+    }
+}
+
+allprojects {
+    group 'cyf.demo'
+    version '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: "org.springframework.boot"
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+
+    def defaultEncoding = 'UTF-8'
+    tasks.withType(AbstractCompile).each { it.options.encoding = defaultEncoding }
+    tasks.jar.enabled = true
+
+    repositories {
+        mavenLocal()
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven { url 'http://repo.spring.io/snapshot' }
+        maven { url 'http://repo.spring.io/milestone' }
+    }
+
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}"
+        }
+
+    }
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok:${lombok}"
+
+        compile "org.springframework.boot:spring-boot-starter-aop"
+        compile "org.springframework.boot:spring-boot-starter-web"
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.0.0.RELEASE'
+        compile "org.springframework.boot:spring-boot-configuration-processor"
+        compile  "com.google.guava:guava:20.0"
+        compile "commons-io:commons-io:2.5"
+        compile "org.apache.commons:commons-lang3:3.5"
+
+        testCompile "org.springframework.boot:spring-boot-starter-test"
+
+        compile group: 'net.sourceforge.nekohtml', name: 'nekohtml', version: '1.9.22'
+
+        compile group: 'com.google.cloud', name: 'google-cloud-speech', version: '0.20.1-alpha'
+
+        compile "org.springframework.boot:spring-boot-devtools"
+
+        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.23'
+    }
+
+    compileJava.dependsOn(processResources)
+}
+
+//工程依赖配置
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "4.4"
+}
+
