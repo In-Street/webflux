@@ -1,0 +1,5 @@
+project(':webflux-mongo'){
+    dependencies{
+        compile project(':webflux-dao')
+    }
+}

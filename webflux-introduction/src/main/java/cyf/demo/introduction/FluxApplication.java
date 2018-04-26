@@ -1,6 +1,8 @@
 package cyf.demo.introduction;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
@@ -8,7 +10,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  *
  */
 @SpringBootApplication(
-        scanBasePackages = {"cyf.demo.dao"}
+        scanBasePackages = {"cyf.demo.dao","cyf.demo.introduction"},exclude={MongoAutoConfiguration.class,MongoDataAutoConfiguration.class}
 )
 public class FluxApplication {
 

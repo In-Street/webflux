@@ -1,13 +1,13 @@
 package cyf.demo.dao.mongo;
 
-import com.mongodb.MongoClient;
+import com.mongodb.ConnectionString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.data.mongodb.MongoDbFactory;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import org.springframework.data.mongodb.core.SimpleReactiveMongoDatabaseFactory;
 
 /**
  * 多数据源
@@ -23,7 +23,7 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
  * @author Cheng Yufei
  * @create 2017-08-07 18:43
  **/
-//@Configuration
+@Configuration
 public class MultipleMongoConfig {
 
     @Autowired
@@ -32,30 +32,28 @@ public class MultipleMongoConfig {
     //两个template中有一个得有@Primary注解，Service注入template时按名称注入@Resource，factory同样
     @Primary
     @Bean
-    public MongoTemplate primaryMongoTemplate() throws Exception {
+    public ReactiveMongoTemplate primaryMongoTemplate() throws Exception {
         System.out.println();
-        return new MongoTemplate(primaryFactory(this.mongoProperties.getPrimary()));
+        return new ReactiveMongoTemplate(primaryReactiveFactory(this.mongoProperties.getPrimary()));
     }
 
     @Bean
-    public MongoTemplate secondMongoTemplate() throws Exception {
+    public ReactiveMongoTemplate secondMongoTemplate() throws Exception {
         System.out.println();
-        return new MongoTemplate(secondFactory(this.mongoProperties.getSecond()));
+        return new ReactiveMongoTemplate(secondReactiveFactory(this.mongoProperties.getSecond()));
     }
 
     @Bean
     @Primary
-    public MongoDbFactory primaryFactory(MongoProperties mongo) throws Exception {
+    public SimpleReactiveMongoDatabaseFactory primaryReactiveFactory(MongoProperties mongo) throws Exception {
         System.out.println();
-        return new SimpleMongoDbFactory(new MongoClient(mongo.getHost(), mongo.getPort()),
-                mongo.getDatabase());
+         return new SimpleReactiveMongoDatabaseFactory(new ConnectionString(mongo.getUri()));
     }
 
     @Bean
-    public MongoDbFactory secondFactory(MongoProperties mongo) throws Exception {
+    public SimpleReactiveMongoDatabaseFactory secondReactiveFactory(MongoProperties mongo) throws Exception {
         System.out.println();
-        return new SimpleMongoDbFactory(new MongoClient(mongo.getHost(), mongo.getPort()),
-                mongo.getDatabase());
+        return new SimpleReactiveMongoDatabaseFactory(new ConnectionString(mongo.getUri()));
     }
 
 }
