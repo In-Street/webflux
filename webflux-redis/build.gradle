@@ -1,0 +1,5 @@
+project(':webflux-redis'){
+    dependencies{
+        compile project(':webflux-dao')
+    }
+}

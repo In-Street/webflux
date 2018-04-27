@@ -1,9 +1,9 @@
 #redis连接
-#spring:
-#  redis:
-#    host: 39.106.118.71
-#    password:
-#    port: 6380
+spring:
+  redis:
+    host: 39.106.118.71
+    password:
+    port: 6380
 
 #mongodb:
 mongodb:

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+   <!-- <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>D:/topvideo-api.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>D:/topvideo-api-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>2</MaxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </layout>
+    </appender>-->
+    
+
+    <!-- 开发环境 -->
+    <springProfile name="webflux-redis">
+
+        <logger name="cyf.demo.redis" level="debug"/>
+        <logger name="cyf.demo.dao" level="debug"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+            <!--<appender-ref ref="FILE" />-->
+        </root>
+    </springProfile>
+
+    <!-- 生产环境 -->
+<!--    <springProfile name="prod">
+
+        <logger name="cyf.gradle" level="info"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+        </root>
+    </springProfile>
+    
+    <springProfile name="pre">
+
+        <logger name="cyf.gradle" level="debug"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE_PRE" />
+        </root>
+    </springProfile>-->
+
+</configuration>
+
