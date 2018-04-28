@@ -1,19 +1,19 @@
 #redis连接
 spring:
   redis:
-    host: 39.106.118.71
-    password: 68A61C323A3452544C4AEF6296D8BD95A
+    host:
+    password:
     port: 6380
 
 #mongodb:
 mongodb:
   primary:
-    host: 39.106.118.71
+    host:
     port: 27017
     database: cyfdb
-    uri: mongodb://39.106.118.71:27017/cyfdb
+    uri: mongodb://localhost:27017/cyfdb
   second:
-     host: 39.106.118.71
+     host:
      port: 27017
      database: cyfdb_second
-     uri: mongodb://39.106.118.71:27017/cyfdb_second
+     uri: mongodb://localhost:27017/cyfdb_second
