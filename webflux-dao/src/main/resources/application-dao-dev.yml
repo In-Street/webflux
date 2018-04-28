@@ -2,7 +2,7 @@
 spring:
   redis:
     host: 39.106.118.71
-    password:
+    password: 68A61C323A3452544C4AEF6296D8BD95A
     port: 6380
 
 #mongodb:

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 /**
  * @author Cheng Yufei
  * @create 2018-04-14 上午11:04
@@ -13,7 +15,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class City {
+public class City implements Serializable {
 
     /**
      * 城市编号
