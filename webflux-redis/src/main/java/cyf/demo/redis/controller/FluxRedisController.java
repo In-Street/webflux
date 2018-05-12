@@ -1,6 +1,5 @@
 package cyf.demo.redis.controller;
 
-import cyf.demo.dao.model.City;
 import cyf.demo.redis.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

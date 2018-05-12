@@ -1,5 +1,7 @@
 project(':webflux-introduction'){
     dependencies{
         compile project(':webflux-dao')
+
+        compile "org.springframework.boot:spring-boot-starter-web"
     }
 }

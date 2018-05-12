@@ -1,0 +1,9 @@
+${AnsiColor.BRIGHT_MAGENTA}
+                 _       __  _
+                | |     / _|| |                 websocket
+ __      __ ___ | |__  | |_ | | _   _ __  __
+ \ \ /\ / // _ \| '_ \ |  _|| || | | |\ \/ /
+  \ V  V /|  __/| |_) || |  | || |_| | >  <
+   \_/\_/  \___||_.__/ |_|  |_| \__,_|/_/\_\
+
+${AnsiColor.GREEN}:: webflux-websocket :: ${application.formatted-version}${AnsiColor.BRIGHT_CYAN}
